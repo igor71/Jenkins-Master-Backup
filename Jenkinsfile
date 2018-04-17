@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Create arcive and add timestamp suffix') {
             steps {
-                sh 'tar cvpzf jenkins_11_`date +%Y-%m-%-d---%H-%M-%S`.tgz . --exclude='./workspace''
+                sh 'tar cvpzf jenkins_11_`date +%Y-%m-%-d---%H-%M-%S`.tgz . --exclude='./workspace' '
             }
         }
     }
