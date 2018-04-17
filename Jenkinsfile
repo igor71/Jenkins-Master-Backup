@@ -1,3 +1,5 @@
+#!groovy
+
 pipeline {
   agent {label 'jenkins'}
     stages {
