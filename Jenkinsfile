@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Copy backup arcive to the network share') {
             steps {
-                 sh 'sshpass -f PW.txt scp -o StrictHostKeyChecking=no ~/jenkins_11_*.tgz admin@yifileserver:/share/Common/IT/jenkins_8/Server_11'
+                 sh 'sshpass -f PW.txt scp -o StrictHostKeyChecking=no /var/lib/jenkins/jenkins_11_*.tgz admin@yifileserver:/share/Common/IT/jenkins_8/Server_11'
             }
         }
         stage('Keep backup with latest 7 days') {
