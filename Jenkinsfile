@@ -1,9 +1,10 @@
 pipeline {
    agent {label 'jenkins'}
-   stages {
-       stage("first") {
-           sh '"#!/bin/bash \n" + 
-                 "echo \"Hello from \$SHELL\""'
-       }
-   }
+   stage('Setting the variables values') {
+    steps {
+         bash '''#!/bin/bash
+                 echo "hello world" 
+         '''
+    }
+  }
 }
