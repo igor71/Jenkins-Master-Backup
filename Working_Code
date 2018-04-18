@@ -1,0 +1,21 @@
+node('jenkins_bu') {
+  stage('Change directory to Jenkins Home') {
+    HOME = "/root/.jenkins"
+    sh "cd ${HOME}"
+  }
+  stage('Create arcive and add timestamp suffix') {
+    sh 'tar cpzf jenkins_6_${BUILD_NUMBER}.tgz /root/.jenkins --warning=no-file-changed --exclude="./workspace" || ( export ret=$?; [[ $ret -eq 1 ]] || exit "$ret" )'
+  }
+  stage('Upload backup arcive to the network share') {
+    sh 'pv jenkins_6_${BUILD_NUMBER}.tgz > /media/common/IT/jenkins_8/Server_6/jenkins_6_${BUILD_NUMBER}.tgz'
+  }
+  stage('Keep backup with latest 7 days') {
+    sh 'sshpass -f PW.txt ssh -tt -o StrictHostKeyChecking=no admin@yifileserver "find /share/Common/IT/jenkins_8/Server_6 -mtime +7 -type f | xargs rm -f"'
+  }
+  stage('Archive inegrity check') {
+    sh '/root/.jenkins/workspace/Jenkins-Master-BU/md5-check.sh'
+  }
+  stage('Remove original archive file') {
+    sh 'rm -f /root/.jenkins/workspace/Jenkins-Master-BU/jenkins_6_*'
+  }
+}  
