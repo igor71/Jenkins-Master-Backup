@@ -4,6 +4,8 @@ node('jenkins_bu') {
     sh "cd ${HOME}"
   }
   stage('Create arcive and add timestamp suffix') {
+   /* When needed to ignore only exit status 1 but to preserve the exit status if it is anything else add folowing: 
+    * || ( export ret=$?; [[ $ret -eq 1 ]] || exit "$ret" ) */
     sh 'tar cpzf jenkins_6_${BUILD_NUMBER}.tgz /root/.jenkins --warning=no-file-changed --exclude="./workspace" || ( export ret=$?; [[ $ret -eq 1 ]] || exit "$ret" )'
   }
   stage('Upload backup arcive to the network share') {
