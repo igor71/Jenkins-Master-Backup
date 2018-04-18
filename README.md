@@ -5,4 +5,4 @@ The pipeline job will run on Jenkins master istance under workspace/<Job-Name> f
 
 In order to make job success need to create folder with exact Job Name at workspace/ prior to running the job
 
-add put inside files from workspace/Jenkins-Master-Backup folder
+add put inside files from workspace/Jenkins-Master-BU folder
