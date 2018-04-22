@@ -29,7 +29,7 @@ pipeline {
     }
          stage('Archive Inegrity Check') {
             steps {
-             sh '/root/.jenkins/workspace/Jenkins-Master-BU/md5-check.sh' }
+             sh '/root/.jenkins/workspace/Jenkins-Master-BU/md5-check.sh' 
             }
     }
          stage('Remove Original Archive File From Jenkins $HOME') {
