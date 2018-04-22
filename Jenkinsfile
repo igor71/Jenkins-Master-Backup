@@ -4,6 +4,7 @@ pipeline {
          stage('Make Scripts Executable') {
             steps {
              sh ' chmod u+x /root/.jenkins/workspace/Jenkins-Master-BU/create_tar_archive.sh'
+             sh ' chmod u+x /root/.jenkins/workspace/Jenkins-Master-BU/md5-check.sh'
             }
     }
          stage('Create Jenkins Arcive') {
