@@ -6,7 +6,7 @@ md5sum /media/common/IT/jenkins_8/Server_6/jenkins_6_${BUILD_NUMBER}.tgz > jenki
 
 md5sum -c jenkins_6_${BUILD_NUMBER}.tgz.md5 
 
-if [ "$?" != "1" ]; then
+if [ "$?" != "0" ]; then
    echo "SHA1 changed! Security breach? Job Will Be Marked As Failed!!!"
    exit -1
 fi
