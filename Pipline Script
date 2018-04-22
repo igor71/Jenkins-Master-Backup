@@ -16,9 +16,18 @@ node('jenkins_bu') {
     sh 'sshpass -f PW.txt ssh -tt -o StrictHostKeyChecking=no admin@yifileserver "find /share/Common/IT/jenkins_8/Server_6 -mtime +7 -type f | xargs rm -f"'
   }
   stage('Archive Inegrity Check') {
-    sh '/root/.jenkins/workspace/Jenkins-Master-BU/md5-check.sh'
+    catchError {sh '/root/.jenkins/workspace/Jenkins-Master-BU/md5-check.sh'}
+    step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: 'user_to@mycompany.com', sendToIndividuals: true])
   }
   stage('Remove Original Archive File From Jenkins $HOME') {
-    sh 'rm -f /root/.jenkins/workspace/Jenkins-Master-BU/jenkins_6_*'
-  }
-} 
+     try {
+      sh 'rm -f /root/.jenkins/workspace/Jenkins-Master-BU/jenkins_6_*'
+        currentBuild.result = 'SUCCESS'
+    } catch (any) {
+        currentBuild.result = 'FAILURE'
+        throw any //rethrow exception to prevent the build from proceeding
+    } finally {
+        step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: 'user_to@mycompany.com', sendToIndividuals: true])
+    }
+   }
+}
