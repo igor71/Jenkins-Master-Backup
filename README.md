@@ -12,7 +12,9 @@ In order to make job success need to create folder with exact Job Name at worksp
 add put inside follwing files from this Repo:
 
 PW.txt
+
 create_tar_archive.sh
+
 md5-check.sh
 
 2-nd -->> Jenkins Declarative Pipeline
