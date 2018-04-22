@@ -37,15 +37,21 @@ pipeline {
             steps {
                   sh 'rm -f /root/.jenkins/workspace/Jenkins-Master-BU/jenkins_6_*'
             }
-      post {
-        always {
-          step([$class: 'Mailer',
-            notifyEveryUnstableBuild: true,
-            recipients: "igor.rabkin@xiaoyi.com",
-            sendToIndividuals: true])
-        }
-      }
+     }
+         post {
+            always {
+               script {
+                  if (currentBuild.result == null) {
+                     currentBuild.result = 'SUCCESS' 
+                  }
+               }
+               step([$class: 'Mailer',
+                     notifyEveryUnstableBuild: true,
+                     recipients: "igor.rabkin@xiaoyi.com",
+                     sendToIndividuals: true])
+            }
+         }               
   }
 }
-}
+
 
