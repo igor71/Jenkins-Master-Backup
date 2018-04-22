@@ -38,6 +38,7 @@ pipeline {
                   sh 'rm -f /root/.jenkins/workspace/Jenkins-Master-BU/jenkins_6_*'
             }
      }
+}      
          post {
             always {
                script {
@@ -51,7 +52,4 @@ pipeline {
                      sendToIndividuals: true])
             }
          } 
-  }
 }
-
-
