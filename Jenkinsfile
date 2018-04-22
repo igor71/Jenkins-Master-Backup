@@ -50,7 +50,8 @@ pipeline {
                      recipients: "igor.rabkin@xiaoyi.com",
                      sendToIndividuals: true])
             }
-         }               
+         } 
+      }
   }
 }
 
