@@ -35,17 +35,9 @@ pipeline {
     }
          stage('Remove Original Archive File From Jenkins $HOME') {
             steps {
-              try {
-                sh 'rm -f /root/.jenkins/workspace/Jenkins-Master-BU/jenkins_6_*'
-                  currentBuild.result = 'SUCCESS'
-                    } catch (any) {
-                  currentBuild.result = 'FAILURE'
-                      throw any //rethrow exception to prevent the build from proceeding
-                } finally {
-                   step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: 'igor.rabkin@xiaoyi.com', sendToIndividuals: true])
-             }
+              sh 'rm -f /root/.jenkins/workspace/Jenkins-Master-BU/jenkins_6_*'
+            }
     }
-   }
         
   }
 }
