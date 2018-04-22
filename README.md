@@ -1,7 +1,7 @@
 # Jenkins-Master-Backup
 Jenkins Master Backup PipeLine Job can be used in two different ways
 
-1-st -- >> Jenkins Pipeline
+1-st -- >> Jenkins Pipeline (example in Pipline Script file)
 
 The code will be stored in Jenkins master itself -->> Configure -->> Pipline Script
 
