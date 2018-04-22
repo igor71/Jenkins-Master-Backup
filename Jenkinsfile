@@ -29,8 +29,7 @@ pipeline {
     }
          stage('Archive Inegrity Check') {
             steps {
-             catchError {sh '/root/.jenkins/workspace/Jenkins-Master-BU/md5-check.sh' }
-               step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: 'igor.rabkin@xiaoyi.com', sendToIndividuals: true])
+             sh '/root/.jenkins/workspace/Jenkins-Master-BU/md5-check.sh' }
             }
     }
          stage('Remove Original Archive File From Jenkins $HOME') {
