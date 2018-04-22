@@ -1,6 +1,11 @@
 pipeline {
    agent {label 'jenkins_bu'}
       stages {
+         stage('Make Scripts Executable') {
+            steps {
+             sh ' chmod u+x /root/.jenkins/workspace/Jenkins-Master-BU/create_tar_archive.sh'
+            }
+    }
          stage('Create Jenkins Arcive') {
             steps {
              sh '/root/.jenkins/workspace/Jenkins-Master-BU/create_tar_archive.sh'
