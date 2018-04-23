@@ -25,7 +25,14 @@ pipeline {
     }
          stage('Archive Inegrity Check') {
             steps {
-             sh '/root/.jenkins/workspace/Jenkins-Master-BU/md5-check.sh' 
+             sh '''#!/bin/bash -xe
+                   md5sum /media/common/IT/jenkins_8/Server_6/jenkins_6_${BUILD_NUMBER}.tgz > jenkins_6_${BUILD_NUMBER}.tgz.md5
+                   md5sum -c jenkins_6_${BUILD_NUMBER}.tgz.md5 
+                       if [ "$?" != "0" ]; then
+                          echo "SHA1 changed! Security breach? Job Will Be Marked As Failed!!!"
+                          exit -1
+                       fi
+                 ''' 
             }
     }
          stage('Remove Original Archive File From Jenkins $HOME') {
