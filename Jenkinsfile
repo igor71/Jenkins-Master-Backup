@@ -8,10 +8,7 @@ pipeline {
     }
          stage('Create Jenkins Arcive') {
             steps {
-               bash '''
-                 #!/bin/bash
-                 tar cpzf jenkins_6_${BUILD_NUMBER}.tgz /root/.jenkins --warning=no-file-changed --exclude="./workspace" || ( export ret=$?; [[ $ret -eq 1 ]] || exit "$ret" )
-                    '''
+             sh "#!/bin/bash tar cpzf jenkins_6_${BUILD_NUMBER}.tgz /root/.jenkins --warning=no-file-changed --exclude="./workspace" || ( export ret=$?; [[ $ret -eq 1 ]] || exit "$ret" )"
             }
     }
          stage('Upload Backup Arcive To Network Share') {
