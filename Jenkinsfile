@@ -1,11 +1,6 @@
 pipeline {
    agent {label 'jenkins_bu'}
       stages {
-         stage('Make Scripts Executable') {
-            steps {
-             sh ' chmod u+x /root/.jenkins/workspace/Jenkins-Master-BU/md5-check.sh'
-            }
-    }
          stage('Create Jenkins Arcive') {
             steps {
              sh '''#!/bin/bash -xe
