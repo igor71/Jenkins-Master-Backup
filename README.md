@@ -19,7 +19,8 @@ The Code will be stored and managed in github Repo (web or local) -- >> Pipline 
 All code and files will be cloned into workspace -->> JobName directory from github Repo
 
 Note, files md5-check.sh & create_tar_archive.sh posted as example, all code running within Jenkins file or within Pipline script on Jenkins.
-############################Backap Restoration Procedure####################################
+
+############################ Backup Restoration Procedure ####################################
 
 1. ssh to jenkins docker
 
