@@ -4,7 +4,9 @@ pipeline {
          stage('Create Jenkins Arcive') {
             steps {
              sh '''#!/bin/bash -xe
+             cd /root/.jenkins
              tar cpzf jenkins_6_${BUILD_NUMBER}.tgz /root/.jenkins --warning=no-file-changed --exclude="./workspace" || ( export ret=$?; [[ $ret -eq 1 ]] || exit "$ret" )
+             mv jenkins_6_${BUILD_NUMBER}.tgz $WORKSPACE
                 '''
             }
     }
