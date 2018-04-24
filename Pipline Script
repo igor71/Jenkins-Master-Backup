@@ -1,7 +1,9 @@
 node('jenkins_bu') {
   stage('Create Jenkins Arcive') {
     sh '''#!/bin/bash -xe
-             tar cpzf jenkins_6_${BUILD_NUMBER}.tgz /root/.jenkins --warning=no-file-changed --exclude="./workspace" || ( export ret=$?; [[ $ret -eq 1 ]] || exit "$ret" )
+             cd /root/.jenkins
+             tar cpzf jenkins_6_${BUILD_NUMBER}.tgz . --warning=no-file-changed --exclude="./workspace" || ( export ret=$?; [[ $ret -eq 1 ]] || exit "$ret" )
+             mv jenkins_6_${BUILD_NUMBER}.tgz $WORKSPACE
        '''
   }
   stage('Upload Backup Arcive To Network Share') {
