@@ -1,6 +1,16 @@
 pipeline {
    agent {label 'jenkins_bu'}
       stages {
+         stage('Creating Workspace Folder in Jenkins UI') {
+            steps {
+                echo 'Execute Grovy Script Code'
+                script {
+                    def Foldername = JOB_NAME;          
+                    def theString = "<a href='http://server-6:8080/jenkins/job" + Foldername + "/" + BUILD_NUMBER + "/execution/node/3/ws/'>Workspace</a>";
+                    manager.addShortText(theString, "blue", "white", "0px", "white");
+                    manager.createSummary("green.gif").appendText("<h1>" + theString + "</h1>", false, false, false, "blue");
+             }
+    } 
          stage('Create Jenkins Arcive') {
             steps {
              sh '''#!/bin/bash -xe
