@@ -6,7 +6,7 @@ pipeline {
                 echo 'Execute Grovy Script Code'
 
                 script {
-                    def Foldername = JOB_NAME;          
+                    def Foldername = Jenkins-Master-BU;          
                     def theString = "<a href='http://server-6:8080/jenkins/job" + Foldername + "/" + BUILD_NUMBER + "/execution/node/3/ws/'>Workspace</a>";
                     manager.addShortText(theString, "blue", "white", "0px", "white");
                     manager.createSummary("green.gif").appendText("<h1>" + theString + "</h1>", false, false, false, "blue");
