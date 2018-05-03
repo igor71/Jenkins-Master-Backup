@@ -7,6 +7,10 @@ pipeline {
              cd /root/.jenkins
              tar cpzf jenkins_6_${BUILD_NUMBER}.tgz . --warning=no-file-changed --exclude="./workspace" || ( export ret=$?; [[ $ret -eq 1 ]] || exit "$ret" )
              mv jenkins_6_${BUILD_NUMBER}.tgz $WORKSPACE
+             file="/root/.jenkins/enkins_6_${BUILD_NUMBER}.tgz"
+                  if [ -f $file ] ; then
+                        rm $file
+                  fi
                 '''
             }
     }
