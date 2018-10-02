@@ -5,7 +5,7 @@ pipeline {
             steps {
              sh '''#!/bin/bash -xe
              cd /root/.jenkins
-             tar cpzf jenkins_6_${BUILD_NUMBER}.tgz . --warning=no-file-changed --exclude="./workspace" || ( export ret=$?; [[ $ret -eq 1 ]] || exit "$ret" )
+             tar cpzf jenkins_6_${BUILD_NUMBER}.tgz . --warning=no-file-changed --exclude="./workspace" --exclude=./*tgz || ( export ret=$?; [[ $ret -eq 1 ]] || exit "$ret" )
              mv jenkins_6_${BUILD_NUMBER}.tgz $WORKSPACE
              file="/root/.jenkins/enkins_6_${BUILD_NUMBER}.tgz"
                   if [ -f $file ] ; then
